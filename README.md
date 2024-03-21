@@ -5,7 +5,7 @@
 
 ## Requirements and Models:
 
-* An open-source pre-trained GenAI LLM model - 'AutoModelForSeq2SeqLM' from Hugging Face.
+* An open-source pre-trained GenAI LLM model - 'google-t5/t5-small' from Hugging Face.
 * Dataset of meta reviews paired with their corresponding summaries - 'zqz979/meta-review'.
 * Google Colaboratory 
 
@@ -13,10 +13,19 @@
 * Dataset consisted of test, train and validated subsets.
 * Truncated the spaces and converted text to lowercase.
 * Dropped the null rows
-* Tokenized using 'google-t5/t5-small' model, which used relatively fewer parameters to train
+* Tokenized using 'google-t5/t5-small' model, 'Auto
 
 ## Evaluating the model:
-* Used the rouge method for evaluating the model and **AutoModelForSeq2SeqLM** specifically for the summarization task. I had to connect to Hugging Face which provides an interactive interface for smooth connection to deploy our model to be public for everyone. Did some hyperparameter tuning but it was limited due to fewer resources at hand. 
+* Used the rouge method for evaluating the model and **AutoModelForSeq2SeqLM** specifically for the summarization task. I had to connect to Hugging Face which provides an interactive interface for smooth connection to deploy our model to be public for everyone. Did some hyperparameter tuning but it was limited due to fewer resources at hand.
+
+## Output:
+The summarized ouputs are in the form of a CSV file - Result_summary.csv
+You can load the csv file as follows in a python environment:
+```python
+import pandas as pd
+
+df = pd.read_csv("Result_summary.csv")
+```
 
 ## Prompt Engineering:
 * You need to present your data very wisely and in a clear format which requires great preprocessing techniques. I was provided with the **JSONL file** which contained a list of strings and in that were 'metareviews' for which we needed the summaries. So extracting the metareviews in a separate pandas dataframe after analyzing all the data was an interesting task for me. Finally iterated through the dataframe and got the output in the summary array for each of the metareview. 
